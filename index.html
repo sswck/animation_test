@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 애니메이션 예시 + 기능추가</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            max-width: 900px;
+        }
+
+        .example {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .example:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        /* 예시 1: 색상 변화 애니메이션 + 호버시 모양변화 */
+        .box-color {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            margin: 0 auto;
+            border-radius: 8px;
+            animation: colorChange 4s infinite alternate;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .box-color:hover {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid gold;
+        }
+        
+        @keyframes colorChange {
+            0% { background-color: #3498db; }
+            50% { background-color: #e74c3c; }
+            100% { background-color: #2ecc71; }
+        }
+
+        /* 예시 2: 부드러운 바운스 효과 */
+        .box-bounce {
+            width: 100px;
+            height: 100px;
+            background-color: #f39c12;
+            margin: 0 auto;
+            border-radius: 8px;
+            animation: bounce 2s infinite ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* 예시 3: 회전 + 그림자 효과 */
+        .box-rotate-shadow {
+            width: 100px;
+            height: 100px;
+            background-color: #9b59b6;
+            margin: 0 auto;
+            border-radius: 8px;
+            animation: rotateShadow 3s infinite linear;
+        }
+        
+        @keyframes rotateShadow {
+            0% { 
+                transform: rotate(0deg);
+                box-shadow: inset 0 0 15px rgba(85, 211, 233, 0.7);
+            }
+            100% { 
+                transform: rotate(360deg);
+                box-shadow: inset 0 0 50px rgb(133, 231, 88);
+            }
+        }
+
+        /* 예시 4: 페이드 인/아웃 */
+        .box-fade {
+            width: 100px;
+            height: 100px;
+            background-color: #2c3e50;
+            margin: 0 auto;
+            border-radius: 8px;
+            animation: fade 3s infinite ease-in-out;
+        }
+        
+        @keyframes fade {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* 예시 5: 호버 시 변형 효과 */
+        .box-transform {
+            width: 100px;
+            height: 100px;
+            background-color: #e74c3c;
+            margin: 0 auto;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .box-transform:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: #c0392b;
+            box-shadow: 0 8px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        /* 예시 6: 복합 애니메이션 */
+        .box-complex {
+            width: 100px;
+            height: 100px;
+            background-color: #27ae60;
+            margin: 0 auto;
+            border-radius: 8px;
+            animation: complexAnim 5s infinite ease-in-out;
+        }
+        
+        @keyframes complexAnim {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                background-color: #27ae60;
+                border-radius: 8px;
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+                background-color: #3498db;
+            }
+            50% {
+                transform: translateY(0) rotate(180deg);
+                background-color: #f1c40f;
+                border-radius: 50%;
+            }
+            75% {
+                transform: translateY(-20px) rotate(270deg);
+                background-color: #e67e22;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                background-color: #27ae60;
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS 애니메이션 예시</h1>
+    
+    <div class="container">
+        <div class="example">
+            <h2>색상 변화</h2>
+            <div class="box-color"></div>
+            <p>부드러운 색상 전환</p>
+        </div>
+        
+        <div class="example">
+            <h2>바운스 효과</h2>
+            <div class="box-bounce"></div>
+            <p>위아래로 튀는 효과</p>
+        </div>
+        
+        <div class="example">
+            <h2>회전 + 그림자</h2>
+            <div class="box-rotate-shadow"></div>
+            <p>회전하며 그림자 변화</p>
+        </div>
+        
+        <div class="example">
+            <h2>페이드 인/아웃</h2>
+            <div class="box-fade"></div>
+            <p>투명도 변화 효과</p>
+        </div>
+        
+        <div class="example">
+            <h2>호버 효과</h2>
+            <div class="box-transform"></div>
+            <p>마우스를 올려보세요</p>
+        </div>
+        
+        <div class="example">
+            <h2>복합 애니메이션</h2>
+            <div class="box-complex"></div>
+            <p>다양한 효과의 조합</p>
+        </div>
+    </div>
+</body>
+</html>
